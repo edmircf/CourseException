@@ -33,15 +33,10 @@ public class Program {
 			System.out.print("Chek-out date (dd/mm/yyyy): ");
 			chekOut = sdf.parse(sc.next());
 			
-			Date now = new Date();
-			
-			if (chekIn.before(now) || chekOut.before(now)) {
-				System.out.println("Error in reservation: reservation dates for updates must be future dates!");;
-				
-			}else if (!chekOut.after(chekIn)) {
-				System.out.println("Error in reservation: Chek-out date must be after chek-in date!");
+			String error = reservation.updatDates(chekIn, chekOut);
+			if (error != null) {
+				System.out.println("Error in reservation: "+ error);
 			}else {
-				reservation.updatDates(chekIn, chekOut);
 				System.out.println(reservation);
 			}
 		}
